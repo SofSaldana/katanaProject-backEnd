@@ -15,4 +15,29 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.get("/get", async (req, res) => {
+  try {
+    const showAllProducts = await product.getProducts();
+    res.status(302).json({
+      message: "Products",
+      payload: showAllProducts,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.get("/get/category", async (req, res) => {
+  try {
+    const getProduct = await product.getProductCategory(req.body.category);
+    if (getProduct.length === 0) throw new Error("Product not found");
+    res.status(302).json({
+      message: "Product by category",
+      payload: getProduct,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 module.exports = router;

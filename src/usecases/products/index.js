@@ -9,6 +9,18 @@ const newProduct = async (productData) => {
   };
 };
 
+const getProducts = async () => {
+  const allProducts = await Product.find({});
+  return allProducts;
+};
+
+const getProductCategory = async (category) => {
+  const findProductsByCategory = await Product.find({ category });
+  return findProductsByCategory;
+};
+
 module.exports = {
   newProduct,
+  getProducts,
+  getProductCategory,
 };
