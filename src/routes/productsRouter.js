@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const product = require("../usecases/products");
 
-router.post("/create", async (req, res) => {
+router.post("/post", async (req, res) => {
   try {
     const newProduct = await product.newProduct(req.body);
     if (!newProduct) throw new Error("Product was not created");
@@ -34,6 +34,35 @@ router.get("/get/category", async (req, res) => {
     res.status(302).json({
       message: "Product by category",
       payload: getProduct,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.patch("/patch/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const update = req.body;
+    const patchProduct = await product.updateProduct(id, update);
+    if (!patchProduct) throw new Error("Product was not updated");
+    res.status(202).json({
+      message: "Updated",
+      payload: patchProduct,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteProductbyId = await product.deleteProduct(id);
+    if (!deleteProductbyId) throw new Error("Product was not deleted");
+    res.status(202).json({
+      message: "Deleted",
+      payload: id,
     });
   } catch (error) {
     console.error(error);

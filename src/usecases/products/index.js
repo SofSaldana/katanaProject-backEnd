@@ -1,4 +1,5 @@
 const Product = require("../../models/products");
+const { patch } = require("../../routes/productsRouter");
 
 const newProduct = async (productData) => {
   const product = new Product(productData);
@@ -19,8 +20,19 @@ const getProductCategory = async (category) => {
   return findProductsByCategory;
 };
 
+const updateProduct = async (id, update) => {
+  const patchProduct = await Product.findByIdAndUpdate(id, update, {
+    new: true,
+  }).exec();
+  return patchProduct;
+};
+
+const deleteProduct = async (id) => await Product.findByIdAndDelete(id).exec();
+
 module.exports = {
   newProduct,
   getProducts,
   getProductCategory,
+  deleteProduct,
+  updateProduct,
 };
