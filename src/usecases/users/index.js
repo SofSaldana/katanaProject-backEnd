@@ -23,10 +23,7 @@ const getAllUsers = async () => {
   return findAllUsers;
 };
 
-const getUser = async (id) => {
-  const findUser = await User.findById({ id }).exec();
-  return findUser;
-};
+const getUser = async (id) => await User.findById(id).exec();
 
 const deleteUser = async (id) => await User.findByIdAndDelete(id).exec();
 
