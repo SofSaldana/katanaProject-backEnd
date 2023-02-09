@@ -1,5 +1,4 @@
 const Product = require("../../models/products");
-const { patch } = require("../../routes/productsRouter");
 
 const newProduct = async (productData) => {
   const product = new Product(productData);
