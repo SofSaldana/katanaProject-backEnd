@@ -11,6 +11,26 @@ const newUser = async (userData) => {
   };
 };
 
+const updateUser = async (id, update) => {
+  const patchUser = await User.findByIdAndUpdate(id, update, {
+    new: true,
+  }).exec();
+  return patchUser;
+};
+
+const getAllUsers = async () => {
+  const findAllUsers = await User.find({}).exec();
+  return findAllUsers;
+};
+
+const getUser = async (id) => await User.findById(id).exec();
+
+const deleteUser = async (id) => await User.findByIdAndDelete(id).exec();
+
 module.exports = {
-    newUser
+  newUser,
+  updateUser,
+  deleteUser,
+  getAllUsers,
+  getUser,
 };
