@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+// const mongoose = require("mongoose");
+// const { Schema } = mongoose;
 
 const schema = new Schema({
   id: { type: String, required: true, trim: true },
@@ -12,9 +12,9 @@ const schema = new Schema({
   quantity: {},
 });
 
-const model = mongoose.model("Product", schema);
+// const model = mongoose.model("Product", schema);
 
-module.exports = {
-  schema,
-  model,
-};
+// module.exports = {
+//   schema,
+//   model,
+// };
