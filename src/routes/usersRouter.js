@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const user = require("../usecases/users");
 
-router.post("/create", async (req, res) => {
+router.post("/post", async (req, res) => {
   try {
     const newUser = await user.newUser(req.body);
     if (!newUser) throw new Error("User was not created");
