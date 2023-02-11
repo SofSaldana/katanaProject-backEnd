@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const product = require("../usecases/products");
 
-router.post("/post", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newProduct = await product.newProduct(req.body);
     if (!newProduct) throw new Error("Product was not created");
@@ -15,7 +15,7 @@ router.post("/post", async (req, res) => {
   }
 });
 
-router.get("/get", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const showAllProducts = await product.getProducts();
     res.status(302).json({
@@ -27,7 +27,7 @@ router.get("/get", async (req, res) => {
   }
 });
 
-router.get("/get/category", async (req, res) => {
+router.get("/category", async (req, res) => {
   try {
     const getProduct = await product.getProductCategory(req.body.category);
     if (getProduct.length === 0) throw new Error("Product not found");
@@ -40,7 +40,7 @@ router.get("/get/category", async (req, res) => {
   }
 });
 
-router.patch("/patch/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const update = req.body;
@@ -55,7 +55,7 @@ router.patch("/patch/:id", async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleteProductbyId = await product.deleteProduct(id);

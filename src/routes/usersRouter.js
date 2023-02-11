@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const user = require("../usecases/users");
 
-router.post("/post", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newUser = await user.newUser(req.body);
     if (!newUser) throw new Error("User was not created");
@@ -15,7 +15,7 @@ router.post("/post", async (req, res) => {
   }
 });
 
-router.patch("/patch/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const update = req.body;
@@ -30,7 +30,7 @@ router.patch("/patch/:id", async (req, res) => {
   }
 });
 
-router.get("/get", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const showAllUsers = await user.getAllUsers();
     res.status(200).json({
@@ -42,7 +42,7 @@ router.get("/get", async (req, res) => {
   }
 });
 
-router.get("/get/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const showUser = await user.getUser(id);
@@ -56,7 +56,7 @@ router.get("/get/:id", async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const eraseUser = await user.deleteUser(id);
