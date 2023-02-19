@@ -8,6 +8,7 @@ const {
   APP_SECRET,
   MERCADOPAGO_PUBLIC_KEY,
   MERCADOPAGO_ACCESS_TOKEN,
+  MERCADOPAGO_URL,
 } = process.env;
 
 const config = {
@@ -23,6 +24,7 @@ const config = {
   mercadopago: {
     publicKey: MERCADOPAGO_PUBLIC_KEY,
     accessToken: MERCADOPAGO_ACCESS_TOKEN,
+    url: MERCADOPAGO_URL,
   },
 };
 

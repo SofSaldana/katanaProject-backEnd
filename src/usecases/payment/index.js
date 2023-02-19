@@ -1,4 +1,4 @@
-const mercadopago = require("mercadopago");
+/* const mercadopago = require("mercadopago");
 const config = require("../../lib/config");
 
 const newOrder = async (orderData) => {
@@ -8,6 +8,8 @@ const newOrder = async (orderData) => {
   return;
 };
 
+const createPreference = async();
+
 module.exports = {
   newOrder,
-};
+}; */

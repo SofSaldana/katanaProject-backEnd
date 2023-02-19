@@ -10,10 +10,10 @@ router(app);
 app.listen(config.app.port, async () => {
   console.log(`Esuchando peticiones HTTP en el puerto ${config.app.port}`);
 
-  try {
+  /* try {
     await db.connect();
     console.log("DB is connected");
   } catch (err) {
     console.error("Connection refused:", err);
-  }
+  } */
 });

@@ -13,6 +13,7 @@ const schema = new Schema({
   price: { type: Number },
   description: { type: String },
   shipmentCost: { type: Number },
+  currency: { type: String },
 });
 
 module.exports = mongoose.model("Product", schema);
