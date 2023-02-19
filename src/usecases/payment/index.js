@@ -1,11 +1,10 @@
 const mercadopago = require("mercadopago");
-const configMp = require("././config");
+const config = require("../../lib/config");
 
-mercadopago.configurations.setAccessToken(configMp.AT);
+mercadopago.configurations.setAccessToken(config.mercadopago.accessToken);
 
-/* const paymentData = () => {
-    transactionAmount: ,
-    token: ,
-    installments
-} */ 
- 
+const newOrder = async (orderData) => {
+  const order = new Order(orderData);
+  const saveOrder = await order.save();
+  return;
+};
