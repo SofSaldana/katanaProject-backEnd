@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { APP_PORT, APP_DB_HOST, APP_DB_PASSWORD, APP_DB_USER, APP_SECRET } =
+const { APP_PORT, APP_DB_HOST, APP_DB_PASSWORD, APP_DB_USER, APP_SECRET, GOOGLE_CLIENT_ID } =
   process.env;
 
 const config = {
@@ -13,6 +13,9 @@ const config = {
     password: APP_DB_PASSWORD,
     host: APP_DB_HOST,
   },
+
+  google: GOOGLE_CLIENT_ID
+  
 };
 
 module.exports = config;
