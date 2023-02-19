@@ -1,7 +1,6 @@
 require("dotenv").config();
 
-const { APP_PORT, APP_DB_HOST, APP_DB_PASSWORD, APP_DB_USER, APP_SECRET } =
-  process.env;
+const { APP_PORT, APP_DB_HOST, APP_DB_PASSWORD, APP_DB_USER, APP_SECRET, MERCADOPAGO_PUBLIC_KEY, MERCADOPAGO_ACCESS_TOKEN } = process.env;
 
 const config = {
   app: {
@@ -15,4 +14,9 @@ const config = {
   },
 };
 
-module.exports = config;
+const configMp = {
+  PK: MERCADOPAGO_PUBLIC_KEY,
+  AT: MERCADOPAGO_ACCESS_TOKEN
+}
+
+module.exports = config, configMp;
