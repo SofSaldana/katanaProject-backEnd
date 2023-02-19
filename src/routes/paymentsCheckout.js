@@ -13,7 +13,6 @@ router.post("/payment_mercadopago", (req, res) => {
         installments: Number(req.body.installments),
         payment_method_id: req.body.paymentMethodId,
         issuer_id: req.body.issuer,
-        // notification_url: "test"
         payer: {
             email: req.body.payer.email,
             identification: {
