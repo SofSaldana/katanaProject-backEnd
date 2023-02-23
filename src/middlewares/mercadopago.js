@@ -1,7 +1,6 @@
 const mp = require("../usecases/payment");
 
 module.exports = {
-  // Step 8
   process: async (req, res) => {
     try {
       let items = [
@@ -24,13 +23,12 @@ module.exports = {
           unit_price: 200,
         },
       ];
-      let link = await mp(items, 12, 0);
+      let link = await mp(items, 1, 0);
       return res.send(link.body);
     } catch (error) {
       return res.send(error);
     }
   },
-  // Step 9
   feedback: (req, res) => {
     return res.send(req.query);
   },
