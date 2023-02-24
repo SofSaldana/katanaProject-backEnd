@@ -7,10 +7,7 @@ mercadopago.configure({
 });
 
 const createPreference = async (productsIds) => {
-  console.log("productis id: ", productsIds);
   const cartProducts = await getProductIdCart(productsIds);
-  console.log("cart productis: ", cartProducts);
-  const cartForPayment = { items: [] };
 
   const stagingCart = cartProducts.map((item) => ({
     id: item._id,
@@ -23,7 +20,17 @@ const createPreference = async (productsIds) => {
     unit_price: item.price,
   }));
 
-  const data = await mercadopago.preferences.create({ items: stagingCart });
+  const stagingUser = {
+    first_name: "TEST_USER_1310746633",
+    last_name: "Test",
+    address: {},
+  };
+
+  const data = await mercadopago.preferences.create({
+    items: stagingCart,
+    payer: stagingUser,
+  });
+  console.log(stagingUser);
   return data;
 };
 

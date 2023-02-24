@@ -16,7 +16,7 @@ const getProducts = async () => {
 
 const getProductIdCart = async (productsIds) => {
   const findProductsByIdCart = await Product.find({
-    _id: { $in: productsIds.ids },
+    _id: { $in: productsIds.id },
   });
   return findProductsByIdCart;
 };
