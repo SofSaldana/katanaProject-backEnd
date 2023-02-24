@@ -14,6 +14,13 @@ const getProducts = async () => {
   return allProducts;
 };
 
+const getProductIdCart = async (productsIds) => {
+  const findProductsByIdCart = await Product.find({
+    _id: { $in: productsIds.ids },
+  });
+  return findProductsByIdCart;
+};
+
 const getProductCategory = async (category) => {
   const findProductsByCategory = await Product.find({ category });
   return findProductsByCategory;
@@ -31,6 +38,7 @@ const deleteProduct = async (id) => await Product.findByIdAndDelete(id).exec();
 module.exports = {
   newProduct,
   getProducts,
+  getProductIdCart,
   getProductCategory,
   deleteProduct,
   updateProduct,
