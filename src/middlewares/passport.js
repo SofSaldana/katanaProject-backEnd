@@ -22,13 +22,13 @@ const googleAuth = new GoogleStrategy(
         });
         await newUser.save();
         const userObject = {
-          id: newUser._id && newUser._id.toString(),
+          id: newUser._id,
           name: profile.displayName,
         };
         return callback(null, userObject);
       } else {
         const userObject = {
-          id: user && user._id && user._id.toString(),
+          id: user._id,
           name: user && user.userName ? user.userName : profile.displayName,
         };
         return callback(null, userObject);
