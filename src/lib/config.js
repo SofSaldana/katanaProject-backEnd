@@ -9,6 +9,7 @@ const {
   MERCADOPAGO_PUBLIC_KEY,
   MERCADOPAGO_ACCESS_TOKEN,
   MERCADOPAGO_URL,
+  FRONTURL,
 } = process.env;
 
 const config = {
@@ -25,6 +26,9 @@ const config = {
     publicKey: MERCADOPAGO_PUBLIC_KEY,
     accessToken: MERCADOPAGO_ACCESS_TOKEN,
     url: MERCADOPAGO_URL,
+  },
+  url: {
+    front: FRONTURL,
   },
 };
 

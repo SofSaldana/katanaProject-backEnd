@@ -26,11 +26,22 @@ const createPreference = async (productsIds) => {
     address: {},
   };
 
+  const backurls = {
+    success: `${config.url.front}/success`,
+    failure: `${config.url.front}/failure`,
+    pending: `${config.url.front}/pending`,
+  };
+
   const data = await mercadopago.preferences.create({
     items: stagingCart,
     payer: stagingUser,
+    back_urls: backurls,
+    auto_return: "approved",
+    payment_methods: {
+      installments: 1,
+    },
   });
-  console.log(stagingUser);
+
   return data;
 };
 
