@@ -3,7 +3,9 @@ const app = express();
 const router = require("./src/routes/indexRouter");
 const config = require("./src/lib/config");
 const db = require("./src/lib/db");
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 router(app);
 
