@@ -3,9 +3,12 @@ const app = express();
 const router = require("./src/routes/indexRouter");
 const config = require("./src/lib/config");
 const db = require("./src/lib/db");
+const cors = require("cors");
 
 app.use(express.json());
 router(app);
+
+app.use(cors());
 
 app.listen(config.app.port, async () => {
   console.log(`Esuchando peticiones HTTP en el puerto ${config.app.port}`);
