@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const showAllProducts = await product.getProducts();
-    res.status(302).json({
+    res.status(200).json({
       message: "Products",
       payload: showAllProducts,
     });
@@ -31,7 +31,7 @@ router.get("/category", async (req, res) => {
   try {
     const getProduct = await product.getProductCategory(req.body.category);
     if (getProduct.length === 0) throw new Error("Product not found");
-    res.status(302).json({
+    res.status(200).json({
       message: "Product by category",
       payload: getProduct,
     });
