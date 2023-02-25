@@ -1,7 +1,16 @@
 require("dotenv").config();
 
-const { APP_PORT, APP_DB_HOST, APP_DB_PASSWORD, APP_DB_USER, APP_SECRET } =
-  process.env;
+const {
+  APP_PORT,
+  APP_DB_HOST,
+  APP_DB_PASSWORD,
+  APP_DB_USER,
+  APP_SECRET,
+  MERCADOPAGO_PUBLIC_KEY,
+  MERCADOPAGO_ACCESS_TOKEN,
+  MERCADOPAGO_URL,
+  FRONTURL,
+} = process.env;
 
 const config = {
   app: {
@@ -12,6 +21,14 @@ const config = {
     user: APP_DB_USER,
     password: APP_DB_PASSWORD,
     host: APP_DB_HOST,
+  },
+  mercadopago: {
+    publicKey: MERCADOPAGO_PUBLIC_KEY,
+    accessToken: MERCADOPAGO_ACCESS_TOKEN,
+    url: MERCADOPAGO_URL,
+  },
+  url: {
+    front: FRONTURL,
   },
 };
 
