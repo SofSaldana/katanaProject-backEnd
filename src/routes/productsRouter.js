@@ -27,6 +27,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const showProduct = await product.getProductById(id);
+    if (!showProduct) throw new Error("Product was not found");
+    res.status(302).json({
+      message: "Product found",
+      payload: showProduct,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 router.get("/category", async (req, res) => {
   try {
     const getProduct = await product.getProductCategory(req.body.category);

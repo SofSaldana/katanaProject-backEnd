@@ -9,6 +9,8 @@ const newProduct = async (productData) => {
   };
 };
 
+const getProductById = async (id) => await Product.findById(id).exec();
+
 const getProducts = async () => {
   const allProducts = await Product.find({});
   return allProducts;
@@ -38,6 +40,7 @@ const deleteProduct = async (id) => await Product.findByIdAndDelete(id).exec();
 module.exports = {
   newProduct,
   getProducts,
+  getProductById,
   getProductIdCart,
   getProductCategory,
   deleteProduct,
