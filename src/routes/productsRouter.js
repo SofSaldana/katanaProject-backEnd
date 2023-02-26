@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     const showProduct = await product.getProductById(id);
     if (!showProduct) throw new Error("Product was not found");
-    res.status(302).json({
+    res.status(200).json({
       message: "Product found",
       payload: showProduct,
     });

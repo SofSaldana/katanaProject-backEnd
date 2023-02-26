@@ -47,7 +47,7 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     const showUser = await user.getUser(id);
     if (!showUser) throw new Error("User was not found");
-    res.status(302).json({
+    res.status(200).json({
       message: "User found",
       payload: showUser,
     });
