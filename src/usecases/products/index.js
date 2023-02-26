@@ -9,6 +9,8 @@ const newProduct = async (productData) => {
   };
 };
 
+const getProductById = async (id) => await Product.findById(id).exec();
+
 const getProducts = async () => {
   const allProducts = await Product.find({});
   return allProducts;
@@ -34,4 +36,5 @@ module.exports = {
   getProductCategory,
   deleteProduct,
   updateProduct,
+  getProductById,
 };
