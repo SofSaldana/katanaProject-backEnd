@@ -27,11 +27,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/cart", async (req, res) => {
-  const id = req.body;
-  console.log(id);
-
+router.get("/cart/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+    console.log(id);
     const showAllProducts = await product.getProductIdCart(id);
     res.status(200).json({
       message: "Cart Products",
