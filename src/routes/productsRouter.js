@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/cart", async (req, res) => {
-  const cartProducts = req.body;
+  const { cartProducts } = req.body;
   console.log(cartProducts);
 
   try {

@@ -17,7 +17,6 @@ const getProducts = async () => {
 };
 
 const getProductIdCart = async (productsIds) => {
-  console.log(productsIds);
   const findProductsByIdCart = await Product.find({
     _id: { $in: productsIds.id },
   });
