@@ -29,6 +29,7 @@ router.get("/", async (req, res) => {
 
 router.get("/cart", async (req, res) => {
   const cartProducts = req.body;
+  console.log(cartProducts);
 
   try {
     const showAllProducts = await product.getProductIdCart(cartProducts);
