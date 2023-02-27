@@ -27,6 +27,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/cart", async (req, res) => {
+  const cartProducts = req.body;
+
+  try {
+    const showAllProducts = await product.getProductIdCart(cartProducts);
+    res.status(200).json({
+      message: "Cart Products",
+      payload: showAllProducts,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
