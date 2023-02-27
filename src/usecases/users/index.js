@@ -1,6 +1,5 @@
 const User = require("../../models/users");
 const encrypt = require("../../lib/encrypt");
-const passport = require("../../middlewares/autHandler");
 
 const newUser = async (userData) => {
   userData.password = await encrypt.hashPassword(userData.password);

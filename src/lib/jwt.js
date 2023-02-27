@@ -1,10 +1,16 @@
-const { sign, verify } = require("jsonwebtoken");
-const { app } = require("./config");
+const { verifyToken } = require("../lib/jwt");
 
-const createToken = (payload) => {
-  return sign(payload, app.secret, { expiresIn: "1h" });
+const authHandler = async (req, res, next) => {
+  const { authorization } = req.headers;
+
+  const token = authorization.split(" ")[1];
+  try {
+    req.params.token = verifyToken(token);
+    next();
+  } catch (error) {
+    const { message } = error;
+    res.status(401).json({ ok: false, message });
+  }
 };
 
-const verifyToken = (token) => verify(token, app.secret);
-
-module.exports = { createToken, verifyToken };
+module.exports = { authHandler };
