@@ -30,8 +30,9 @@ router.get("/", async (req, res) => {
 router.get("/cart/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
-    const showAllProducts = await product.getProductIdCart(id);
+    const stageData = id.split("=")[1].split(",");
+    const idsObject = { id: stageData };
+    const showAllProducts = await product.getProductIdCart(idsObject);
     res.status(200).json({
       message: "Cart Products",
       payload: showAllProducts,
