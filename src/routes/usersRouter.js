@@ -56,6 +56,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/auth", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+});
+
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
