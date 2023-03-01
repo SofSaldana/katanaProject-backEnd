@@ -4,22 +4,12 @@ const router = require("./src/routes/indexRouter");
 const config = require("./src/lib/config");
 const db = require("./src/lib/db");
 const cors = require("cors");
+const { auth } = require("express-openid-connect");
 
 app.use(cors());
 app.use(express.json());
+app.use(auth(config.auth));
 router(app);
-
-// app.use(function (req, res, next) {
-//   res.header(
-//     "Access-Control-Allow-Origin",
-//     "https://blu-front-end.vercel.app/"
-//   );
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 
 app.get("/", function (req, res, next) {
   res.send("Runing");

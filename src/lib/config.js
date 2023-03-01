@@ -10,6 +10,12 @@ const {
   MERCADOPAGO_ACCESS_TOKEN,
   MERCADOPAGO_URL,
   FRONTURL,
+  AUTH_authRequired,
+  AUTH_auth0Logout,
+  AUTH_secret,
+  AUTH_baseURL,
+  AUTH_clientID,
+  AUTH_issuerBaseURL,
 } = process.env;
 
 const config = {
@@ -29,6 +35,14 @@ const config = {
   },
   url: {
     front: FRONTURL,
+  },
+  auth: {
+    authRequired: AUTH_authRequired,
+    auth0Logout: AUTH_auth0Logout,
+    secret: AUTH_secret,
+    baseURL: AUTH_baseURL,
+    clientID: AUTH_clientID,
+    issuerBaseURL: AUTH_issuerBaseURL,
   },
 };
 
