@@ -1,6 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../usecases/users");
+const { authHandler } = require("../middlewares/autHandler");
+
+router.get("/", authHandler, async (req, res) => {
+  const id = req.params.token.sub;
+
+  const { email, userName } = await getById(id);
+
+  res.json({ ok: true, payload: { email, userName } });
+});
 
 router.post("/", async (req, res) => {
   try {
@@ -12,6 +21,18 @@ router.post("/", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+  }
+});
+
+router.post("/auth", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const payload = await authenticate(email, password);
+    res.status(202).json({ ok: true, payload });
+  } catch (error) {
+    const { message } = error;
+    res.status(401).json({ ok: false, message });
   }
 });
 
@@ -42,6 +63,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/auth", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+});
+
+router.get("/sign-up", (req, res) => {
+  res.oidc.login({
+    authorizationParams: {
+      screen_hint: "signup",
+    },
+  });
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -54,10 +87,6 @@ router.get("/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-});
-
-router.get("/auth", (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
 router.delete("/:id", async (req, res) => {
