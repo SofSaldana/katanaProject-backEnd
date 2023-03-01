@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../usecases/users");
+// const passport = require("passport");
+// const googleAuth = require("../middlewares/passport");
 
 router.post("/", async (req, res) => {
   try {
@@ -54,6 +56,10 @@ router.get("/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+});
+
+router.get("/authgoogle", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logget out");
 });
 
 router.delete("/:id", async (req, res) => {

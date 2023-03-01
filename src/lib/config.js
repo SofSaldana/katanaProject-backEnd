@@ -24,6 +24,14 @@ const config = {
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
   },
+  auth0: {
+    authRequired: false,
+    auth0Logout: true,
+    secret: "lwKBwCP_OSxSQMgcO6JqDi4i_VK3JWQ9WzPv5yniH5Pzughdoidu9J-5jS781gG1",
+    baseURL: "https://blu-front-end.vercel.app",
+    clientID: "TmRfjq0H0lCZYGFJAr0ceLhkQmAZAPeJ",
+    issuerBaseURL: "https://dev-qato2bikn1cl4tjg.us.auth0.com",
+  },
 };
 
 module.exports = config;

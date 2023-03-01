@@ -2,6 +2,9 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oidc").Strategy;
 const { google } = require("../lib/config");
 const userModel = require("../models/user");
+const { randomPasswordGeneration } = require("../usecases/users");
+
+const randomPass = randomPasswordGeneration();
 
 const googleAuth = new GoogleStrategy(
   {
@@ -18,7 +21,7 @@ const googleAuth = new GoogleStrategy(
         const newUser = new userModel({
           userName: profile.displayName,
           email: profile.emails[0].value,
-          password: null,
+          password: randomPass,
         });
         await newUser.save();
         const userObject = {

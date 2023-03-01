@@ -1,6 +1,15 @@
 const User = require("../../models/users");
 const encrypt = require("../../lib/encrypt");
 
+const randomPasswordGeneration = () => {
+  const caracteres =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  return Array.from(
+    { length: 8 },
+    () => caracteres[Math.floor(Math.random() * caracteres.length)]
+  ).join("");
+};
+
 const newUser = async (userData) => {
   userData.password = await encrypt.hashPassword(userData.password);
   const user = new User(userData);
@@ -33,4 +42,5 @@ module.exports = {
   deleteUser,
   getAllUsers,
   getUser,
+  randomPasswordGeneration,
 };
