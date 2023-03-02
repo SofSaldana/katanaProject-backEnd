@@ -1,10 +1,11 @@
-const { sign, verify } = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const { app } = require("./config");
 
-const createToken = (payload) => {
-  return sign(payload, app.secret, { expiresIn: "1h" });
+const createToken = (email, isAdmin) => {
+  const payload = { email, isAdmin };
+  return jwt.sign(payload, app.secret, { expiresIn: "1h" });
 };
 
-const verifyToken = (token) => verify(token, app.secret);
+const verifyToken = (token) => jwt.verify(token, app.secret);
 
 module.exports = { createToken, verifyToken };

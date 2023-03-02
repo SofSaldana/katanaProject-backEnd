@@ -1,13 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../usecases/users");
-const { authHandler } = require("../middlewares/autHandler");
+const { autHandler } = require("../middlewares/autHandler");
+const { createToken } = require("../lib/jwt");
 
-router.get("/", authHandler, async (req, res) => {
-  const id = req.params.token.sub;
+router.get("/authgoogle", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+});
 
+router.get("/sign-up", (req, res) => {
+  res.oidc.login({
+    authorizationParams: {
+      prompt: "login",
+      screen_hint: "signup",
+    },
+  });
+});
+
+router.get("/", autHandler, async (req, res) => {
+  const id = req.token.sub;
   const { email, userName } = await getById(id);
-
   res.json({ ok: true, payload: { email, userName } });
 });
 
@@ -28,8 +40,11 @@ router.post("/auth", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const payload = await authenticate(email, password);
-    res.status(202).json({ ok: true, payload });
+    const auth = await user.authenticate(email, password);
+    if (auth.authPassed) {
+      const token = createToken(email, auth.userAdmin);
+      res.status(200).json({ ok: true, token });
+    }
   } catch (error) {
     const { message } = error;
     res.status(401).json({ ok: false, message });
@@ -49,30 +64,6 @@ router.patch("/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-});
-
-router.get("/", async (req, res) => {
-  try {
-    const showAllUsers = await user.getAllUsers();
-    res.status(200).json({
-      message: "Users",
-      payload: showAllUsers,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-router.get("/auth", (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-});
-
-router.get("/sign-up", (req, res) => {
-  res.oidc.login({
-    authorizationParams: {
-      screen_hint: "signup",
-    },
-  });
 });
 
 router.get("/:id", async (req, res) => {

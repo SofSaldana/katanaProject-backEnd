@@ -1,6 +1,6 @@
 const { verifyToken } = require("../lib/jwt");
 
-const authHandler = async (req, res, next) => {
+const autHandler = async (req, res, next) => {
   const { authorization } = req.headers;
 
   const token = authorization.split(" ")[1];
@@ -13,4 +13,4 @@ const authHandler = async (req, res, next) => {
   }
 };
 
-module.exports = { authHandler };
+module.exports = { autHandler };
