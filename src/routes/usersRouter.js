@@ -18,9 +18,8 @@ router.get("/sign-up", (req, res) => {
 });
 
 router.get("/", autHandler, async (req, res) => {
-  const id = req.token.sub;
-  const { email, userName } = await getById(id);
-  res.json({ ok: true, payload: { email, userName } });
+  const allUsers = await user.getAllUsers();
+  res.json({ ok: true, payload: allUsers });
 });
 
 router.post("/", async (req, res) => {
