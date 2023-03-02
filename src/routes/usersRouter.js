@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../usecases/users");
-const { autHandler } = require("../middlewares/autHandler");
+const { autHandler, isAdmin } = require("../middlewares/autHandler");
 const { createToken } = require("../lib/jwt");
 
 router.get("/authgoogle", (req, res) => {
@@ -11,13 +11,12 @@ router.get("/authgoogle", (req, res) => {
 router.get("/sign-up", (req, res) => {
   res.oidc.login({
     authorizationParams: {
-      prompt: "login",
       screen_hint: "signup",
     },
   });
 });
 
-router.get("/", autHandler, async (req, res) => {
+router.get("/", isAdmin, async (req, res) => {
   const allUsers = await user.getAllUsers();
   res.json({ ok: true, payload: allUsers });
 });

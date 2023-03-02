@@ -8,6 +8,7 @@ const { auth } = require("express-openid-connect");
 
 app.use(cors());
 app.use(express.json());
+
 app.use(auth(config.auth));
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.oidc.isAuthenticated();
