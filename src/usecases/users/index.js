@@ -23,6 +23,16 @@ const getAllUsers = async () => {
   return findAllUsers;
 };
 
+const findByEmail = async (email) => await User.find({ email }).exec();
+
+const authenticate = async (email, password) => {
+  const userFind = await findByEmail(email);
+  const userPassword = userFind[0].password;
+  const userAdmin = userFind[0].isAdmin;
+  const authPassed = await encrypt.verifyPass(password, userPassword);
+  return { authPassed, userAdmin };
+};
+
 const getUser = async (id) => await User.findById(id).exec();
 
 const deleteUser = async (id) => await User.findByIdAndDelete(id).exec();
@@ -32,5 +42,7 @@ module.exports = {
   updateUser,
   deleteUser,
   getAllUsers,
+  findByEmail,
+  authenticate,
   getUser,
 };
