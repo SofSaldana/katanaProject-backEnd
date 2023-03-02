@@ -65,7 +65,7 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", autHandler, async (req, res) => {
   try {
     const { id } = req.params;
     const showUser = await user.getUser(id);
@@ -79,7 +79,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", autHandler, async (req, res) => {
   try {
     const { id } = req.params;
     const eraseUser = await user.deleteUser(id);
