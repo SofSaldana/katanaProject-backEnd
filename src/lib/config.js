@@ -37,12 +37,12 @@ const config = {
     front: FRONTURL,
   },
   auth: {
-    authRequired: AUTH_authRequired,
-    auth0Logout: AUTH_auth0Logout,
-    secret: AUTH_secret,
+    issuerBaseURL: AUTH_issuerBaseURL,
     baseURL: AUTH_baseURL,
     clientID: AUTH_clientID,
-    issuerBaseURL: AUTH_issuerBaseURL,
+    secret: AUTH_secret,
+    authRequired: AUTH_authRequired,
+    auth0Logout: AUTH_auth0Logout,
   },
 };
 
