@@ -14,6 +14,7 @@ app.use((req, res, next) => {
   res.locals.isAuthenticated = req.oidc.isAuthenticated();
   next();
 });
+
 router(app);
 
 app.get("/", function (req, res, next) {
