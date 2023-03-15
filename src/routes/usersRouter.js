@@ -40,7 +40,7 @@ router.post("/auth", async (req, res) => {
   try {
     const auth = await user.authenticate(email, password);
     if (auth.authPassed) {
-      const token = createToken(email, auth.userAdmin);
+      const token = createToken(email, auth.userAdmin, auth.userId);
       res.status(200).json({ ok: true, token });
     }
   } catch (error) {
