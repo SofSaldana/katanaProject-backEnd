@@ -27,10 +27,12 @@ const findByEmail = async (email) => await User.find({ email }).exec();
 
 const authenticate = async (email, password) => {
   const userFind = await findByEmail(email);
+  const userId = userFind[0]._id;
+  console.log(userId);
   const userPassword = userFind[0].password;
   const userAdmin = userFind[0].isAdmin;
   const authPassed = await encrypt.verifyPass(password, userPassword);
-  return { authPassed, userAdmin };
+  return { authPassed, userAdmin, userId };
 };
 
 const getUser = async (id) => await User.findById(id).exec();

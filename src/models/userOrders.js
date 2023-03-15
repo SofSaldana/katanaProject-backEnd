@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const schema = new Schema({
   products: { type: Array },
   total: { type: Number },
-  userId: { type: Schema.ObjectId },
+  userId: { type: String },
   createdAt: { type: String },
   status: { type: String, default: "Pending" },
   trackingNumber: { type: String },
